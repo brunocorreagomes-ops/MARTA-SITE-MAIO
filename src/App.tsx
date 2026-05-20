@@ -52,6 +52,11 @@ export default function App() {
   
   // Scrolled navbar state
   const [scrolled, setScrolled] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   // Active section state for scroll highlight
   const [activeTab, setActiveTab] = useState("inicio");
@@ -84,6 +89,12 @@ export default function App() {
         setScrolled(true);
       } else {
         setScrolled(false);
+      }
+
+      if (window.scrollY > 400) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
       }
 
       // Check current active section
@@ -240,7 +251,7 @@ export default function App() {
           <div className="hidden md:flex items-center space-x-4">
             <motion.a 
               href="#agendar" 
-              className="bg-bordeaux text-blush px-6 py-2.5 text-xs font-semibold uppercase tracking-widest hover:bg-dark transition-all duration-300 shadow-md shadow-bordeaux/10 block"
+              className="bg-bordeaux text-blush px-6 py-2.5 text-xs font-semibold uppercase tracking-widest hover:bg-dark transition-all duration-300 shadow-md shadow-bordeaux/10 block rounded-full"
               whileHover={{ 
                 y: [0, -6, 2, -2, 0],
                 scale: 1.03,
@@ -293,7 +304,7 @@ export default function App() {
                       setActiveTab(item.id);
                       setMobileMenuOpen(false);
                     }}
-                    className={`block py-3.5 border-b border-rosegold/5 transition-all duration-300 rounded-sm ${
+                    className={`block py-3.5 border-b border-rosegold/5 transition-all duration-300 rounded-lg ${
                       activeTab === item.id 
                         ? "text-bordeaux font-semibold bg-rosegold/5 tracking-wider" 
                         : "text-dark/80 hover:text-bordeaux hover:bg-rosegold/5"
@@ -306,7 +317,7 @@ export default function App() {
                   <a 
                     href="#agendar" 
                     onClick={() => setMobileMenuOpen(false)}
-                    className="bg-bordeaux text-blush text-center w-full max-w-xs py-3.5 text-xs uppercase tracking-widest font-semibold hover:bg-dark active:scale-[0.98] transition-all duration-300 shadow-md shadow-bordeaux/10"
+                    className="bg-bordeaux text-blush text-center w-full max-w-xs py-3.5 text-xs uppercase tracking-widest font-semibold hover:bg-dark active:scale-[0.98] transition-all duration-300 shadow-md shadow-bordeaux/10 rounded-full"
                   >
                     Agendar Horário
                   </a>
@@ -369,13 +380,13 @@ export default function App() {
               href="https://wa.me/5519999220089?text=Ol%C3%A1%20Marta%21%20Vi%20o%20site%20e%20gostaria%20de%20agendar%20uma%20sess%C3%A3o%20presencial%20ou%20online.%20Poderia%20me%20orientar%3F" 
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto text-center border-2 border-bordeaux bg-bordeaux text-blush px-8 sm:px-10 py-3.5 uppercase tracking-widest text-xs font-semibold focus:outline-none hover:bg-transparent hover:text-bordeaux shadow-lg shadow-bordeaux/15 hover:shadow-none transition-all duration-300 transform active:scale-95"
+              className="w-full sm:w-auto text-center border-2 border-bordeaux bg-bordeaux text-blush px-8 sm:px-10 py-3.5 uppercase tracking-widest text-xs font-semibold focus:outline-none hover:bg-transparent hover:text-bordeaux shadow-lg shadow-bordeaux/15 hover:shadow-none transition-all duration-300 transform active:scale-95 rounded-full"
             >
               Falar com a Marta no WhatsApp
             </a>
             <a 
               href="#quiz-orientador" 
-              className="w-full sm:w-auto text-center border-2 border-rosegold/50 text-dark px-8 sm:px-10 py-3.5 uppercase tracking-widest text-xs font-semibold hover:border-bordeaux hover:text-bordeaux transition-all duration-300 focus:outline-none"
+              className="w-full sm:w-auto text-center border-2 border-rosegold/50 text-dark px-8 sm:px-10 py-3.5 uppercase tracking-widest text-xs font-semibold hover:border-bordeaux hover:text-bordeaux transition-all duration-300 focus:outline-none rounded-full"
             >
               Descobrir Minha Terapia
             </a>
@@ -409,19 +420,19 @@ export default function App() {
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center max-w-3xl mx-auto mt-16">
-            <div className="p-4 border border-rosegold/10 bg-blush/20 hover:bg-blush/40 transition-colors duration-300">
+            <div className="p-5 border border-rosegold/10 bg-blush/20 hover:bg-blush/40 shadow-sm hover:shadow transition-all duration-300 rounded-2xl">
               <span className="font-serif text-bordeaux text-3xl block font-bold mb-1">01</span>
               <span className="text-[10px] uppercase tracking-widest text-rosegold font-semibold">Exclusividade</span>
             </div>
-            <div className="p-4 border border-rosegold/10 bg-blush/20 hover:bg-blush/40 transition-colors duration-300">
+            <div className="p-5 border border-rosegold/10 bg-blush/20 hover:bg-blush/40 shadow-sm hover:shadow transition-all duration-300 rounded-2xl">
               <span className="font-serif text-bordeaux text-3xl block font-bold mb-1">02</span>
               <span className="text-[10px] uppercase tracking-widest text-rosegold font-semibold">Acolhimento</span>
             </div>
-            <div className="p-4 border border-rosegold/10 bg-blush/20 hover:bg-blush/40 transition-colors duration-300">
+            <div className="p-5 border border-rosegold/10 bg-blush/20 hover:bg-blush/40 shadow-sm hover:shadow transition-all duration-300 rounded-2xl">
               <span className="font-serif text-bordeaux text-3xl block font-bold mb-1">03</span>
               <span className="text-[10px] uppercase tracking-widest text-rosegold font-semibold">Clareza</span>
             </div>
-            <div className="p-4 border border-rosegold/10 bg-blush/20 hover:bg-blush/40 transition-colors duration-300">
+            <div className="p-5 border border-rosegold/10 bg-blush/20 hover:bg-blush/40 shadow-sm hover:shadow transition-all duration-300 rounded-2xl">
               <span className="font-serif text-bordeaux text-3xl block font-bold mb-1">04</span>
               <span className="text-[10px] uppercase tracking-widest text-rosegold font-semibold">Cuidado</span>
             </div>
@@ -431,7 +442,7 @@ export default function App() {
 
       {/* 4. Interactive Quiz Tool - "Descobrir Minha Terapia" */}
       <section id="quiz-orientador" className="py-16 md:py-24 px-6 bg-blush/50 border-t border-b border-rosegold/10">
-        <div className="max-w-3xl mx-auto bg-white border border-rosegold/15 p-8 md:p-12 shadow-xl shadow-bordeaux/5 rounded-none relative">
+        <div className="max-w-3xl mx-auto bg-white border border-rosegold/15 p-8 md:p-12 shadow-xl shadow-bordeaux/5 rounded-2xl overflow-hidden relative">
           <div className="absolute top-0 left-0 right-0 h-[3px] bg-bordeaux"></div>
           
           <div className="text-center mb-8">
@@ -457,10 +468,10 @@ export default function App() {
                   <button
                     key={opt.id}
                     onClick={() => handleQuizChoice("physical", opt.id)}
-                    className={`p-3 text-xs text-left border transition-all duration-300 cursor-pointer ${
+                    className={`p-4 text-xs text-left border transition-all duration-300 cursor-pointer rounded-xl ${
                       quizAnswers.physical === opt.id
-                        ? "border-bordeaux bg-bordeaux/5 text-bordeaux font-medium"
-                        : "border-gray-200 text-dark/75 hover:border-rosegold"
+                        ? "border-bordeaux bg-bordeaux/5 text-bordeaux font-medium shadow-sm shadow-bordeaux/5"
+                        : "border-gray-200 text-dark/75 hover:border-rosegold hover:bg-gray-50/50"
                     }`}
                   >
                     {opt.label}
@@ -483,10 +494,10 @@ export default function App() {
                   <button
                     key={opt.id}
                     onClick={() => handleQuizChoice("mental", opt.id)}
-                    className={`p-3 text-xs text-left border transition-all duration-300 cursor-pointer ${
+                    className={`p-4 text-xs text-left border transition-all duration-300 cursor-pointer rounded-xl ${
                       quizAnswers.mental === opt.id
-                        ? "border-bordeaux bg-bordeaux/5 text-bordeaux font-medium"
-                        : "border-gray-200 text-dark/75 hover:border-rosegold"
+                        ? "border-bordeaux bg-bordeaux/5 text-bordeaux font-medium shadow-sm shadow-bordeaux/5"
+                        : "border-gray-200 text-dark/75 hover:border-rosegold hover:bg-gray-50/50"
                     }`}
                   >
                     {opt.label}
@@ -510,10 +521,10 @@ export default function App() {
                   <button
                     key={opt.id}
                     onClick={() => handleQuizChoice("objective", opt.id)}
-                    className={`p-3 text-xs text-left border transition-all duration-300 cursor-pointer ${
+                    className={`p-4 text-xs text-left border transition-all duration-300 cursor-pointer rounded-xl ${
                       quizAnswers.objective === opt.id
-                        ? "border-bordeaux bg-bordeaux/5 text-bordeaux font-medium"
-                        : "border-gray-200 text-dark/75 hover:border-rosegold"
+                        ? "border-bordeaux bg-bordeaux/5 text-bordeaux font-medium shadow-sm shadow-bordeaux/5"
+                        : "border-gray-200 text-dark/75 hover:border-rosegold hover:bg-gray-50/50"
                     }`}
                   >
                     {opt.label}
@@ -530,7 +541,7 @@ export default function App() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="mt-10 p-6 border-2 border-rosegold/30 bg-blush/40 text-center"
+                className="mt-10 p-6 border border-rosegold/30 bg-blush/40 text-center rounded-xl"
               >
                 <p className="text-rosegold uppercase tracking-widest text-[9px] font-bold mb-1">Análise do Espaço Integrativo</p>
                 <span className="text-xs text-dark/70 font-light block mb-2">Com base em suas respostas, o caminho sugerido é:</span>
@@ -548,7 +559,7 @@ export default function App() {
                       <div className="flex flex-col sm:flex-row justify-center items-center gap-3">
                         <button
                           onClick={() => setSelectedService(service)}
-                          className="bg-transparent border border-bordeaux text-bordeaux hover:bg-bordeaux hover:text-blush text-center px-6 py-2.5 text-xs uppercase tracking-widest font-semibold transition-all duration-300 cursor-pointer"
+                          className="bg-transparent border border-bordeaux text-bordeaux hover:bg-bordeaux hover:text-blush text-center px-6 py-2.5 text-xs uppercase tracking-widest font-semibold transition-all duration-300 cursor-pointer rounded-full"
                         >
                           Ver Detalhes do Método
                         </button>
@@ -556,7 +567,7 @@ export default function App() {
                           href={`https://wa.me/5519999220089?text=${encodeURIComponent(`Olá Marta! Concluí o auto-teste no seu site e recebi a recomendação da terapia de ${service.title} (${service.subtitle}). Gostaria de agendar uma sessão e compreender mais sobre o processo.`)}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="bg-bordeaux border border-bordeaux text-blush hover:bg-dark hover:border-dark text-center px-6 py-2.5 text-xs uppercase tracking-widest font-semibold transition-all duration-300 cursor-pointer flex items-center justify-center gap-1.5"
+                          className="bg-bordeaux border border-bordeaux text-blush hover:bg-dark hover:border-dark text-center px-6 py-2.5 text-xs uppercase tracking-widest font-semibold transition-all duration-300 cursor-pointer flex items-center justify-center gap-1.5 rounded-full"
                         >
                           Agendar Sessão Presencial <ArrowRight className="w-3.5 h-3.5" />
                         </a>
@@ -597,7 +608,7 @@ export default function App() {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 onClick={() => setSelectedService(service)}
-                className="group bg-white border border-rosegold/10 hover:border-rosegold/30 shadow-lg hover:scale-105 transition-all duration-500 cursor-pointer flex flex-col h-full"
+                className="group bg-white border border-rosegold/10 hover:border-rosegold/30 shadow-md hover:shadow-xl hover:scale-[1.03] transition-all duration-500 cursor-pointer flex flex-col h-full rounded-2xl overflow-hidden"
               >
                 {/* Photo frame */}
                 <div className="overflow-hidden aspect-[16/10] relative">
@@ -608,7 +619,7 @@ export default function App() {
                     referrerPolicy="no-referrer"
                   />
                   {/* Decorative icon flag */}
-                  <div className="absolute bottom-4 left-4 bg-blush text-bordeaux p-2.5 shadow-md">
+                  <div className="absolute bottom-4 left-4 bg-blush text-bordeaux p-2.5 shadow-md rounded-xl">
                     {renderIcon(service.iconName, "w-5 h-5")}
                   </div>
                 </div>
@@ -650,7 +661,7 @@ export default function App() {
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.95, y: 15 }}
               transition={{ type: "spring", damping: 25, stiffness: 180 }}
-              className="bg-blush max-w-3xl w-full max-h-[90vh] overflow-y-auto rounded-none border border-rosegold/30 shadow-2xl relative"
+              className="bg-blush max-w-3xl w-full max-h-[90vh] overflow-y-auto rounded-2xl border border-rosegold/30 shadow-2xl relative overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Button */}
@@ -756,7 +767,7 @@ export default function App() {
                     href={`https://wa.me/5519999220089?text=${encodeURIComponent(`Olá Marta! Conheci o método ${selectedService.title} (${selectedService.subtitle}) em seu site e gostaria de agendar uma sessão ou obter mais informações.`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full sm:w-auto bg-bordeaux text-blush text-center px-8 py-3 text-xs uppercase tracking-widest font-semibold hover:bg-dark hover:-translate-y-0.5 transition-all duration-300 shadow-lg shadow-bordeaux/10 cursor-pointer block"
+                    className="w-full sm:w-auto bg-bordeaux text-blush text-center px-8 py-3 text-xs uppercase tracking-widest font-semibold hover:bg-dark hover:-translate-y-0.5 transition-all duration-300 shadow-lg shadow-bordeaux/10 cursor-pointer block rounded-full"
                   >
                     Agendar Horário Presencial
                   </a>
@@ -777,16 +788,16 @@ export default function App() {
             <div className="w-full lg:w-1/2">
               <div className="relative">
                 {/* Decorative border frame back drop */}
-                <div className="absolute -top-4 -left-4 w-full h-full border border-rosegold/20 pointer-events-none translate-x-2 translate-y-2 z-0"></div>
+                <div className="absolute -top-4 -left-4 w-full h-full border border-rosegold/20 pointer-events-none translate-x-2 translate-y-2 z-0 rounded-2xl"></div>
                 
                 <img 
                   src="https://i.ibb.co/wrS3cx2H/marta-foto-site-01.webp" 
                   alt="Marta Ana Chiconato - Espaço Acolhedor" 
-                  className="w-full h-auto object-cover shadow-xl relative z-10 select-none filter brightness-95 saturation-75"
+                  className="w-full h-auto object-cover shadow-xl relative z-10 select-none filter brightness-95 saturation-75 rounded-2xl"
                   referrerPolicy="no-referrer"
                 />
 
-                <div className="absolute -bottom-6 -right-6 bg-blush border border-rosegold/15 p-4 z-20 shadow-lg hidden sm:block max-w-[220px]">
+                <div className="absolute -bottom-6 -right-6 bg-blush border border-rosegold/15 p-4 z-20 shadow-lg hidden sm:block max-w-[220px] rounded-xl">
                   <p className="font-serif text-bordeaux text-xs font-semibold uppercase tracking-widest mb-1">Localização</p>
                   <p className="text-[10px] text-dark/70 font-light leading-relaxed">
                     Edifício de fácil acesso em Indaiatuba, com estacionamento conveniente e discrição absoluta.
@@ -810,7 +821,7 @@ export default function App() {
               </p>
 
               {/* Interactive Tabs for the Space Highlights */}
-              <div className="border border-rosegold/10 bg-blush/30 p-6 rounded-none mt-8">
+              <div className="border border-rosegold/10 bg-blush/30 p-6 rounded-2xl mt-8">
                 <p className="text-xs font-bold uppercase tracking-widest text-[#B58D6E] mb-4">Diferenciais do Nosso Refúgio</p>
                 
                 {/* Horizontal Tab Buttons */}
@@ -819,10 +830,10 @@ export default function App() {
                     <button
                       key={feat.id}
                       onClick={() => setActiveSpaFeatureId(feat.id)}
-                      className={`px-3 py-1.5 text-[10px] uppercase font-semibold tracking-wider cursor-pointer transition-colors ${
+                      className={`px-3.5 py-1.5 text-[10px] uppercase font-semibold tracking-wider cursor-pointer transition-colors rounded-full ${
                         activeSpaFeatureId === feat.id
-                          ? "bg-bordeaux text-blush"
-                          : "bg-white text-dark/70 hover:bg-gray-100 border border-rosegold/5"
+                          ? "bg-bordeaux text-blush shadow-sm shadow-bordeaux/10"
+                          : "bg-white text-dark/70 hover:bg-gray-100 border border-rosegold/10"
                       }`}
                     >
                       {feat.title}
@@ -873,7 +884,7 @@ export default function App() {
             <div className="w-12 h-px bg-rosegold mx-auto mt-4"></div>
           </div>
 
-          <div className="relative bg-white border border-rosegold/15 p-8 md:p-14 shadow-xl shadow-bordeaux/5">
+          <div className="relative bg-white border border-rosegold/15 p-8 md:p-14 shadow-xl shadow-bordeaux/5 rounded-2xl overflow-hidden">
             {/* Visual decorative giant quotes */}
             <span className="absolute top-4 left-6 text-7xl font-serif text-rosegold/15 pointer-events-none select-none">“</span>
             
@@ -906,7 +917,7 @@ export default function App() {
                         {TESTIMONIALS_DATA[currentTestimonialIndex].role}
                       </p>
                     </div>
-                    <span className="text-[10px] bg-bordeaux/5 text-bordeaux px-3 py-1 font-semibold uppercase tracking-widest">
+                    <span className="text-[10px] bg-bordeaux/5 text-bordeaux px-3 py-1 font-semibold uppercase tracking-widest rounded-full">
                       {TESTIMONIALS_DATA[currentTestimonialIndex].service}
                     </span>
                   </div>
@@ -918,14 +929,14 @@ export default function App() {
             <div className="flex items-center space-x-2 absolute right-6 bottom-6 z-10">
               <button 
                 onClick={prevTestimonial}
-                className="p-2 border border-rosegold/30 hover:border-bordeaux hover:bg-bordeaux hover:text-blush text-dark transition-all duration-300 cursor-pointer"
+                className="p-2.5 rounded-full border border-rosegold/30 hover:border-bordeaux hover:bg-bordeaux hover:text-blush text-dark transition-all duration-300 cursor-pointer"
                 aria-label="Depoimento Anterior"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
               <button 
                 onClick={nextTestimonial}
-                className="p-2 border border-rosegold/30 hover:border-bordeaux hover:bg-bordeaux hover:text-blush text-dark transition-all duration-300 cursor-pointer"
+                className="p-2.5 rounded-full border border-rosegold/30 hover:border-bordeaux hover:bg-bordeaux hover:text-blush text-dark transition-all duration-300 cursor-pointer"
                 aria-label="Próximo Depoimento"
               >
                 <ChevronRight className="w-4 h-4" />
@@ -952,8 +963,8 @@ export default function App() {
               return (
                 <div 
                   key={faq.id} 
-                  className={`border transition-all duration-300 ${
-                    isOpen ? "border-bordeaux bg-blush/30" : "border-rosegold/15 hover:border-rosegold/45"
+                  className={`border transition-all duration-300 rounded-2xl overflow-hidden shadow-sm ${
+                    isOpen ? "border-bordeaux bg-blush/30 shadow-md shadow-bordeaux/[0.02]" : "border-rosegold/15 hover:border-rosegold/45"
                   }`}
                 >
                   <button
@@ -1103,7 +1114,7 @@ export default function App() {
             </div>
 
             {/* Right Side: Elegant Hub de WhatsApp Direct Booking */}
-            <div className="lg:col-span-7 bg-white text-dark p-6 sm:p-8 md:p-10 shadow-2xl relative">
+            <div className="lg:col-span-7 bg-white text-dark p-6 sm:p-8 md:p-10 shadow-2xl relative rounded-2xl overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-[5px] bg-rosegold"></div>
 
               <div className="border-b border-gray-100 pb-5 mb-6">
@@ -1121,10 +1132,10 @@ export default function App() {
                     <motion.div 
                       key={service.id}
                       whileHover={{ scale: 1.01, borderColor: "rgba(102, 23, 38, 0.3)" }}
-                      className="p-4 border border-gray-100 hover:border-bordeaux/30 transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-blush/5 group"
+                      className="p-5 border border-gray-100 hover:border-bordeaux/20 transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-blush/5 group rounded-2xl"
                     >
                       <div className="flex items-start gap-3.5 max-w-md">
-                        <div className="p-3 bg-bordeaux/5 text-bordeaux rounded-sm group-hover:bg-bordeaux group-hover:text-blush transition-colors shrink-0 mt-0.5 sm:mt-0">
+                        <div className="p-3 bg-bordeaux/5 text-bordeaux rounded-xl group-hover:bg-bordeaux group-hover:text-blush transition-colors shrink-0 mt-0.5 sm:mt-0">
                           {renderIcon(service.iconName, "w-5 h-5")}
                         </div>
                         <div>
@@ -1144,7 +1155,7 @@ export default function App() {
                         href={waUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full sm:w-auto bg-bordeaux hover:bg-dark text-white text-center py-2.5 px-5 text-xs font-semibold uppercase tracking-widest transition-all shrink-0 flex items-center justify-center gap-2 shadow-sm"
+                        className="w-full sm:w-auto bg-bordeaux hover:bg-dark text-white text-center py-2.5 px-6 text-xs font-semibold uppercase tracking-widest transition-all shrink-0 flex items-center justify-center gap-2 shadow-sm rounded-full"
                       >
                         <Phone className="w-3.5 h-3.5 fill-white" /> Contatar
                       </a>
@@ -1155,7 +1166,7 @@ export default function App() {
                 {/* General Inquiry option */}
                 <motion.div 
                   whileHover={{ scale: 1.01, borderColor: "rgba(102, 23, 38, 0.3)" }}
-                  className="p-5 border border-dashed border-gray-200 hover:border-bordeaux/30 transition-all bg-gray-50/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+                  className="p-5 border border-dashed border-gray-200 hover:border-bordeaux/20 transition-all bg-gray-50/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 rounded-2xl"
                 >
                   <div className="max-w-md">
                     <h4 className="font-serif text-dark text-base font-semibold leading-tight flex items-center gap-2">
@@ -1171,7 +1182,7 @@ export default function App() {
                     href={`https://wa.me/5519999220089?text=${encodeURIComponent("Olá Marta! Vim através de seu site e gostaria de tirar algumas dúvidas gerais sobre o seu atendimento de Terapia Integrativa e agendar um acolhimento.")}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full sm:w-auto border-2 border-rosegold hover:border-bordeaux hover:bg-bordeaux hover:text-white text-dark text-center py-2.5 px-5 text-xs font-semibold uppercase tracking-widest transition-all shrink-0 flex items-center justify-center gap-2"
+                    className="w-full sm:w-auto border-2 border-rosegold hover:border-bordeaux hover:bg-bordeaux hover:text-white text-dark text-center py-2.5 px-6 text-xs font-semibold uppercase tracking-widest transition-all shrink-0 flex items-center justify-center gap-2 rounded-full"
                   >
                     Conversar Geral
                   </a>
@@ -1290,7 +1301,7 @@ export default function App() {
             </div>
             
             <p className="text-rosegold/60 text-[10px] tracking-[0.16em] uppercase font-light pt-1 text-center w-full">
-              Desenvolvido estrategicamente por <span className="text-rosegold/90 font-medium whitespace-nowrap">Orval'ia Studio</span>
+              Desenvolvido estrategicamente por <a href="https://www.orvalia.com.br" target="_blank" rel="noopener noreferrer" className="text-rosegold/90 hover:text-white underline transition-all duration-300 font-medium whitespace-nowrap">Orval'ia Studio</a>
             </p>
           </div>
 
@@ -1308,13 +1319,32 @@ export default function App() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1 }}
-          className="flex items-center gap-2 bg-bordeaux hover:bg-dark text-blush text-[10px] sm:text-xs font-semibold uppercase tracking-widest px-4 py-3 sm:px-5 sm:py-3.5 shadow-xl hover:shadow-2xl hover:shadow-bordeaux/20 border border-rosegold/20 transition-all duration-300"
+          className="flex items-center gap-2 bg-bordeaux hover:bg-dark text-blush text-[10px] sm:text-xs font-semibold uppercase tracking-widest px-4 py-3 sm:px-5 sm:py-3.5 shadow-xl hover:shadow-2xl hover:shadow-bordeaux/20 border border-rosegold/20 transition-all duration-300 rounded-full"
         >
           <Phone className="w-3.5 h-3.5 fill-blush text-transparent shrink-0 animate-ping absolute opacity-30" />
           <Phone className="w-3.5 h-3.5 fill-blush text-transparent shrink-0 relative z-10" />
           <span>Falar com a Marta</span>
         </motion.a>
       </div>
+
+      {/* Floating Back to Top Button */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            key="back-to-top"
+            onClick={scrollToTop}
+            initial={{ opacity: 0, scale: 0.8, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 10 }}
+            whileHover={{ scale: 1.1, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            className="fixed bottom-6 left-6 z-40 bg-white hover:bg-blush text-bordeaux border border-rosegold/25 p-3.5 rounded-full shadow-lg hover:shadow-xl cursor-pointer transition-colors duration-300 flex items-center justify-center focus:outline-none"
+            aria-label="Voltar para o topo"
+          >
+            <ChevronUp className="w-5 h-5 stroke-[2.5]" />
+          </motion.button>
+        )}
+      </AnimatePresence>
 
       {/* Legal Dialog Modal for LGPD/Terms */}
       <AnimatePresence>
