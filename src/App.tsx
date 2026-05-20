@@ -253,14 +253,14 @@ export default function App() {
               href="#agendar" 
               className="bg-bordeaux text-blush px-6 py-2.5 text-xs font-semibold uppercase tracking-widest hover:bg-dark transition-all duration-300 shadow-md shadow-bordeaux/10 block rounded-full"
               whileHover={{ 
-                y: [0, -6, 2, -2, 0],
-                scale: 1.03,
+                y: [0, -8, 0, -4, 0],
+                scale: 1.04,
                 transition: { 
                   duration: 0.6,
                   ease: "easeInOut"
                 }
               }}
-              whileTap={{ scale: 0.97 }}
+              whileTap={{ scale: 0.96 }}
             >
               Agendar
             </motion.a>
@@ -314,13 +314,22 @@ export default function App() {
                   </a>
                 ))}
                 <div className="pt-5 flex justify-center">
-                  <a 
+                  <motion.a 
                     href="#agendar" 
                     onClick={() => setMobileMenuOpen(false)}
-                    className="bg-bordeaux text-blush text-center w-full max-w-xs py-3.5 text-xs uppercase tracking-widest font-semibold hover:bg-dark active:scale-[0.98] transition-all duration-300 shadow-md shadow-bordeaux/10 rounded-full"
+                    className="bg-bordeaux text-blush text-center w-full max-w-xs py-3.5 text-xs uppercase tracking-widest font-semibold hover:bg-dark transition-all duration-300 shadow-md shadow-bordeaux/10 rounded-full block"
+                    whileHover={{ 
+                      y: [0, -8, 0, -4, 0],
+                      scale: 1.03,
+                      transition: { 
+                        duration: 0.6,
+                        ease: "easeInOut"
+                      }
+                    }}
+                    whileTap={{ scale: 0.97 }}
                   >
                     Agendar Horário
-                  </a>
+                  </motion.a>
                 </div>
               </div>
             </motion.div>
